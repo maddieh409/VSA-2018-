@@ -27,18 +27,18 @@
 # print int(user_birthmonth)
 # user_birthdate = raw_input ("When is your birthdate? ")
 # print user_birthmonth, user_birthdate = raw_input("When is your birthday? ")
-
-current_month = raw_input("What is the current month? ")
-current_day = raw_input("What is the current day? ")
-user_birthmonth = raw_input("When is your birthmonth? ")
-user_birthdate = raw_input ("When is your birthdate? ")
-
-if user_birthmonth > 7:
-    print int(user_birthmonth) - 7
-elif user_birthmonth == 7:
-    print int(user_birthmonth) - 7
-else:
-    print int(user_birthmonth) + 5
+#
+# current_month = raw_input("What is the current month? ")
+# current_day = raw_input("What is the current day? ")
+# user_birthmonth = raw_input("When is your birthmonth? ")
+# user_birthdate = raw_input ("When is your birthdate? ")
+# #
+# # if user_birthmonth > 7:
+# #     print int(user_birthmonth) - 7
+# elif user_birthmonth == 7:
+#     print int(user_birthmonth) - 7
+# else:
+#     print int(user_birthmonth) + 5
 
 # if user_birthmonth == 2:
 #     print (28 - int(user_birthdate)) + 9
@@ -46,9 +46,23 @@ else:
 #     print (30 - int(user_birthdate)) + 9
 # else:
 #     print (31 - int(user_birthdate)) + 9
+#
+# if user_birthmonth >= current_month:
+#     print int(user_birthmonth) - int(current_month), "months until your birthday"
+# else:
+#     print 12 - int(current_month) + int(user_birthmonth), "months until your birthday"
+#
+# if user_birthdate >= current_day:
+#     print int(user_birthdate) - int(current_day), "days until your birthday"
+# else:
+#     print 30 - int(current_day) - int(user_birthdate), "days until your birthday"
+#     print 11 - int(current_month) - (user_birthmonth), "days until your birthday"
 
-if user_birthdate > 9:
-    print int(user_birthdate) - 9
-if user_birthdate == 9:
-    print 0
+user_name = raw_input("What is your name?")
+
+
+# str = str.lower(user_name)
+
+print user_name[0:2].lower() + user_name[2].upper() + user_name[3:].lower()
+
 
