@@ -16,4 +16,34 @@
 # Enter a number to sum, or 0 to indicate you are finished: 2
 # Enter a number to sum, or 0 to indicate you are finished: 10
 # Enter a number to sum, or 0 to indicate you are finished: 0
-#The sum of your numbers is: 21
+# The sum of your numbers is: 21
+#
+# counter = 0
+# s = ""
+#
+# # key word while
+# while counter <= 10:
+#     print counter
+#     counter = counter + 1
+#     s = s + "a"
+#     print s
+#     if counter == 5:
+#         break
+#
+# sum = 0
+# user_input = 1
+# while user_input > 0:
+#     user_input = int(raw_input("Enter a number to sum"))
+#     sum = int(user_input) + sum
+# print int(user_input) + sum, "is your sum"
+
+# kew word is for
+# loops is over a range of numbers
+
+s = "vsa"
+# loop over strings
+for letter in s:
+    print letter
+    if letter == "s":
+        print "this is an s"
+#
