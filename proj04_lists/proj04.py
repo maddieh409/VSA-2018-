@@ -12,39 +12,57 @@
 # practice with lists
 #
 # """
-#
-# #Part I
-# #Take a list, say for example this one:
-#
+# #
+# # #Part I
+# # #Take a list, say for example this one:
+# #
 # a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+# #
+# # print a[:5]
 #
-# print a[:5]
-
-#and write a program that prints out all the elements of the list that are less than 5.
+# items = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 #
+# if items in a == 5:
+#     print items < [5]
+# #and write a program that prints out all the elements of the list that are less than 5.
+# #
 # number = int(raw_input("Enter a number."))
 # for numbers in a:
 #     if numbers < number:
 #         print numbers
 
 #
-#
 # #
-# # #Part II
-# # # Take two lists, say for example these two:
+# # #
+# # # #Part II
+# # # # Take two lists, say for example these two:
 # b = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 # c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-# # # and write a program that creates and prints a list that contains only the elements
-# # # that are common between the lists (without duplicates).
-# # # Make sure your program works on two lists of different sizes.
-#
-# counter = 0
-#
+# # # # and write a program that creates and prints a list that contains only the elements
+# # # # that are common between the lists (without duplicates).
+# # # # Make sure your program works on two lists of different sizes.
+# #
+# # counter = 0
+# #
 # for item in b:
 #     if item in c:
-#         print item
-
-
+# #         print item
+# #
+# #
+# play = raw_input("say yes to make a list: ")
+# answer = 5
+#
+# while play == "yes":
+#     import random
+#     while answer <= 99999:
+#         answer = random.randint(1, 99999)
+#         print answer
+#
+# #
+# #
+#
+#
+#
 # for numbers in c:
 #     if numbers == numbers in b:
 #         print numbers
@@ -75,12 +93,12 @@
 #
 #
 #
-#
-#
-#
-#
-# #Part IV
-# #Ask the user for a string, and print out whether this string is a palindrome or not.
+# #
+# #
+# #
+# #
+# # #Part IV
+# # #Ask the user for a string, and print out whether this string is a palindrome or not.
 check = True
 empty_list = []
 string = raw_input("Type a string in the space provided, to determine whether or not it is a palindrome: ")
@@ -90,10 +108,13 @@ for letters in string:
 begin_counter = 0
 end_counter = len(string) - 1
 
-for items in range (len(string)/2):
+for items in range(len(string)/2):
     if string[begin_counter] == string[end_counter]:
         begin_counter = begin_counter + 1
         end_counter = end_counter - 1
+        if items == " ":
+            begin_counter = begin_counter + 1
+            end_counter = end_counter - 1
     else:
         print "Your string is not a palindrome."
         check = False
@@ -101,8 +122,8 @@ for items in range (len(string)/2):
 if check == True:
     print "Your string is a palindrome"
 
-
-# if string[0] != string[-1]:
+#
+# # if string[0] != string[-1]:
 #     print "Your string is not a palindrome."
 # else:
 #         for item in string:
