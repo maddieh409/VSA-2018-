@@ -23,3 +23,7 @@
 
 import random
 number = str(random.randint(1000,9999)) #random 4 digit number
+list = []
+user_input = raw_input("Enter a four digit number here: ")
+user_input = []
+
