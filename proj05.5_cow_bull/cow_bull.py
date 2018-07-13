@@ -24,34 +24,45 @@
 import random
 number = str(random.randint(1000,9999)) #random 4 digit number
 newlist = []
-print number
 
-user_input = raw_input("Enter a four digit number here: ")
+counter = 0
+bulls = 0
+item = 0
+while True:
+    user_input = raw_input("Enter a four digit number here: ")
+    if user_input != number:
+        for item in number:
+            if item in number:
+                if number[0] == user_input[0]:
+                        counter = counter + 1
+                if number[1] == user_input[1]:
+                        counter = counter + 1
+                if number[2] == user_input[2]:
+                        counter = counter + 1
+                if number[3] == user_input[3]:
+                        counter = counter + 1
+                if number[0] != user_input[0]:
+                        bulls = bulls + 1
+                if number[1] != user_input[1]:
+                        bulls = bulls + 1
+                if number[2] != user_input[2]:
+                        bulls = bulls + 1
+                if number[3] != user_input[3]:
+                        bulls = bulls + 1
+            if counter < 4 and bulls <= 4:
+                print "You have", counter, "cow(s)"
+            if counter < 4 and bulls <= 4:
+                print "You have", bulls, "bull(s)"
+            else:
+                print
+                print "Try again"
+                break
+    else:
+        print "Congratulations, you guessed the number!"
+        break
 
-for item in user_input:
-    counter = 0
-    bulls = 0
-    if item in number:
-        if number[0] == user_input[0]:
-                counter = counter + 1
-        if number[1] == user_input[1]:
-                counter = counter + 1
-        if number[2] == user_input[2]:
-                counter = counter + 1
-        if number[3] == user_input[3]:
-                counter = counter + 1
-        if number[0] != user_input[0]:
-                bulls = bulls + 1
-        if number[1] != user_input[1]:
-                bulls = bulls + 1
-        if number[2] != user_input[2]:
-                bulls = bulls + 1
-        if number[3] != user_input[3]:
-                bulls = bulls + 1
-if counter < 4 and bulls < 4:
-    print "You have", counter, "cow(s)"
-    print "You have", bulls, "bull(s)"
-if counter == 4 and bulls == 0:
-    print "Congratulations, you guessed the number!"
+
+
+
 
 
