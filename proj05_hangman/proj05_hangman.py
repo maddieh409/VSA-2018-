@@ -81,9 +81,9 @@ while True:
         print "Available letters: " + "|".join(player_letters)
         if guesses == 1:
             print "You have 1 guess left."
-        else:
+        else:quit()
             print "You have " + str(guesses) + " guesses left."
-        player_input = raw_input("Guess a letter (or type in the whole word if you think you know it): ")
+        player_input = raw_input("Guess a letter (or type in the whole word if you think you know it): ").lower()
         if player_input not in string.lowercase and player_input != word:
             print "Invalid input."
         elif player_input == word:
@@ -111,7 +111,7 @@ while True:
         print
         print "Great job! You won!"
     yn = raw_input("Type 'quit' to quit, or press enter to play again! ")
-    if yn == "quit":
+    if yn.lower() == "quit":
         break
     else:
         print
