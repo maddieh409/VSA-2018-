@@ -185,21 +185,20 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     """
     # TO DO...
+    hand2 = hand.copy()
     valid_word = False
-    valid_letters = False
-    for item in word_list:
-            if item == word:
-                valid_word = True
+    if word in word_list:
+        valid_word = True
     for letter in word:
-        if letter in hand:
-            hand = hand.get(letter, 0) - 1
-            valid_letters = True
-        if valid_letters == False:
-            print "You do not have those letters"
-        if valid_word == True and valid_letters == True:
-            return True
+        if letter in hand2:
+            hand2[letter] = hand2[letter] - 1
+            valid_word = True
+        elif hand2[letter] == 0:
+            valid_word = True
         else:
+            print "You do not have those letters"
             return False
+    return valid_word
 
 
 
