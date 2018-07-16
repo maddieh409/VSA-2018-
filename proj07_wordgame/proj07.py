@@ -165,16 +165,11 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
     # TO DO ...
-    new_hand = {}
-    word = {}
-    for letter in hand:
-        if letter in word:
-            if word[letter] < hand[letter]:
-                new_hand[letter] = hand[letter] - word[letter]
-            else:
-                break
-        else:
-            new_hand[letter] = hand[letter]
+    new_hand = hand.copy()
+    value = 0
+    for letter in word:
+        value = new_hand.get(letter, 0) - 1
+        new_hand[letter] = value
     return new_hand
 
 # Problem #3: Test word validity
@@ -190,6 +185,26 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     """
     # TO DO...
+    valid_word = False
+    valid_letters = False
+    for item in word_list:
+            if item == word:
+                valid_word = True
+    for letter in word:
+        if letter in hand:
+            hand = hand.get(letter, 0) - 1
+            valid_letters = True
+        if valid_letters == False:
+            print "You do not have those letters"
+        if valid_word == True and valid_letters == True:
+            return True
+        else:
+            return False
+
+
+
+
+
 
 def calculate_handlen(hand):
     handlen = 0
