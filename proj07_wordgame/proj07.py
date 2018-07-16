@@ -58,7 +58,6 @@ def get_frequency_dict(sequence):
 # (end of helper code)
 # -----------------------------------
 
-#
 # Problem #1: Scoring a word
 #
 def get_word_score(word, n):
@@ -77,8 +76,28 @@ def get_word_score(word, n):
     returns: int >= 0
     """
     # TO DO...
-    
-#
+    # word = word.lower()
+    # counter = 0
+    # player_points = 0
+    # for item in SCRABBLE_LETTER_VALUES:
+    #     if item in word:
+    #         if counter == 0 and word == 0:
+    #             print player_points == (SCRABBLE_LETTER_VALUES.get(word, n) * len.word) + 50
+    #         elif counter > 0 and word != 0:
+    #             print player_points == (SCRABBLE_LETTER_VALUES.get(word, n) * len.word)
+    #             counter = counter + 1
+    #
+    # return "Total points", player_points
+    sum = 0
+    new_points = 0
+    for item in word:
+        sum = sum + SCRABBLE_LETTER_VALUES.get(item, n)
+    new_points = (sum)*int(len(word))
+    if int(len(word)) == n:
+        new_points = new_points + 50
+    return new_points
+
+
 # Make sure you understand how this function works and what it does!
 #
 def display_hand(hand):
@@ -96,7 +115,7 @@ def display_hand(hand):
     for letter in hand.keys():
         for j in range(hand[letter]):
              print letter,              # print all on the same line
-    print                               # print an empty line
+    return hand                               # print an empty line
 
 #
 # Make sure you understand how this function works and what it does!
@@ -146,8 +165,18 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
     # TO DO ...
+    new_hand = {}
+    word = {}
+    for letter in hand:
+        if letter in word:
+            if word[letter] < hand[letter]:
+                new_hand[letter] = hand[letter] - word[letter]
+            else:
+                break
+        else:
+            new_hand[letter] = hand[letter]
+    return new_hand
 
-#
 # Problem #3: Test word validity
 #
 def is_valid_word(word, hand, word_list):
