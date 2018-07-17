@@ -8,7 +8,7 @@ import string
 
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
-HAND_SIZE = 7
+HAND_SIZE = 3
 
 SCRABBLE_LETTER_VALUES = {
     'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': 8, 'k':
@@ -185,19 +185,31 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     """
     # TO DO...
-    hand2 = hand.copy()
-    valid_word = False
-    if word in word_list:
-        valid_word = True
+    # hand_copy = hand.copy()
+    # valid_word = False
+    # if word in word_list:
+    #     valid_word = True
+    # for letter in word:
+    #     if letter in hand_copy:
+    #         hand_copy[letter] = hand_copy[letter] - 1
+    #         valid_word = True
+    #     elif hand_copy[letter] == 0:
+    #         valid_word = True
+    #     else:
+    #         print "You do not have those letters"
+    #         return False
+    # return valid_word
+    hand_copy = hand.copy()
+    valid_word = True
+    if word not in word_list:
+        valid_word = False
     for letter in word:
-        if letter in hand2:
-            hand2[letter] = hand2[letter] - 1
-            valid_word = True
-        elif hand2[letter] == 0:
-            valid_word = True
+        if letter not in hand_copy:
+            valid_word = False
+        elif hand_copy[letter] == 0:
+            valid_word = False
         else:
-            print "You do not have those letters"
-            return False
+            hand_copy[letter] = hand_copy[letter] - 1
     return valid_word
 
 
@@ -213,7 +225,6 @@ def calculate_handlen(hand):
 
 #
 # Problem #4: Playing a hand
-#
 def play_hand(hand, word_list):
 
     """
@@ -243,8 +254,36 @@ def play_hand(hand, word_list):
       
     """
     # TO DO ...
+word_list = load_words()
+hand = deal_hand(HAND_SIZE)
+n = HAND_SIZE
+total_points = 0
+while hand:
+    print "Current hand:"
+    display_hand(hand)
+    print
+    user_input = raw_input("Enter a word here using the letters in your hand or '.' to end your turn: ")
+    get_frequency_dict(user_input)
+    valid_word = is_valid_word(user_input, hand, word_list)
+    handlength = calculate_handlen(hand)
+    if valid_word == True:
+        print "Great word!"
+        new_points = get_word_score(user_input, n)
+        total_points = total_points + new_points
+        print "You earned", new_points, "points, and now have", total_points, "total points."
+        handlength = calculate_handlen(hand)
+        if handlength == 0:
+            print "Congratulations, you won the game! Your score is", total_points, "points"
+            break
+        else:
+            hand = update_hand(hand, user_input)
+    elif user_input == '.':
+        print "Okay, you ended with", total_points, "points. Game over."
+        break
+    else:
+        print "This word is invalid. Choose another word"
 
-#
+
 # Problem #5: Playing a game
 # Make sure you understand how this code works!
 # 
@@ -264,6 +303,28 @@ def play_game(word_list):
     * If the user inputs anything else, ask them again.
     """
     # TO DO...
+    # n = HAND_SIZE
+    # play = raw_input("Do you want to play the game? Type yes or no: ")
+    # if play == "yes":
+    #     load_words()
+    #     deal_hand(n)
+    #     display_hand(hand)
+    #     user_input = raw_input("Enter a word here using the letters in your hand: ")
+    #     get_frequency_dict(user_input)
+    #     for user_input in hand:
+    #         if is_valid_word(user_input, hand, word_list) == False:
+    #             print "Invalid word"
+    #             print user_input == raw_input("Enter a word here using the letters in your hand: ")
+    #         else:
+    #             if user_input == hand:
+    #                 print "Congratulations, you won the game! Your score is", get_word_score(user_input, n), "points"
+    #                 break
+    #             else:
+    #                 print "Great word!"
+    #                 calculate_handlen(hand)
+    #                 update_hand(hand, user_input)
+    # else:
+    #     print "Okay, game over."
 
 #
 # Build data structures used for entire session and play game
