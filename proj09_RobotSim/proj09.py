@@ -68,19 +68,16 @@ class RectangularRoom(object):
         """
         self.width = width
         self.height = height
+        self.floor = self.createTiles(self)
 
     def createTiles(self, rect):
 
-        tiles = {}
+        tiles = []
 
-        for i in range(0, rect.getNumTiles()):
-
-
-            tiles[i] = "dirty"
-
+        for x in range(0, self.width):
+            for y in range(0, self.height):
+                tiles.append([x, y, "dirty"])
         return tiles
-
-
 
 
     def cleanTileAtPosition(self, pos):
@@ -89,10 +86,15 @@ class RectangularRoom(object):
         Assumes that POS represents a valid position inside this room.
         pos: a Position
         """
+        x = int(pos.getX())
+        y = int(pos.getY())
+        for item in self.floor:
+            if item[0] == x and item[1] == y:
+                item[2] = "clean"
+        return self.floor
 
-        pass
 
-    def isTileCleaned(self, m, n):
+    def isTileCleaned(self, pos):
         """
         Return True if the tile (m, n) has been cleaned.
         Assumes that (m, n) represents a valid tile inside the room.
@@ -100,7 +102,13 @@ class RectangularRoom(object):
         n: an integer
         returns: True if (m, n) is cleaned, False otherwise
         """
-        pass
+        x = int(pos.getX())
+        y = int(pos.getY())
+        for item in self.floor:
+            if item[2] == "clean":
+                return True
+            else:
+                return False
 
     def getNumTiles(self):
         """
@@ -108,23 +116,33 @@ class RectangularRoom(object):
         returns: an integer
         """
         return self.width * self.height
-
-# rectangle = RectangularRoom(3, 3)
-# print rectangle.createTiles(rectangle)
+#
+position = Position(1.3, 2.6)
+p = Position(1, 1)
+rectangle = RectangularRoom(3, 3)
+print rectangle.createTiles(rectangle)
+print rectangle.cleanTileAtPosition(position)
+print rectangle.isTileCleaned(p)
 
     def getNumCleanedTiles(self):
         """
         Return the total number of clean tiles in the room.
         returns: an integer
         """
-        raise NotImplementedError
+        counter = 0
+
+        for item in self.floor:
+            if item[2] == "clean":
+                counter += 1
+        return counter
+
 
     def getRandomPosition(self):
         """
         Return a random position inside the room.
         returns: a Position object.
         """
-        raise NotImplementedError
+
 
     def isPositionInRoom(self, pos):
         """
