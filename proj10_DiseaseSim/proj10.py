@@ -117,10 +117,10 @@ class SimplePatient(object):
         """
 
         # TODO
-        return len(self.viruses)
+        population = self.maxPop
+        return population
 
-
-    def update(self, popDensity):
+    def update(self):
         """
         Update the state of the virus population in this patient for a single
         time step. update() should execute the following steps in this order:
@@ -138,21 +138,30 @@ class SimplePatient(object):
 
         # TODO
         num2 = random.randint(0, 100)
-        self.virusees = []
+        virusees = []
         for x in self.viruses:
             if x.doesClear() == False:
-                self.virusees.append(x)
+                self.viruses.append(x)
             else:
-                Try:
-                    x.reproduce(popDensity)
-        for x in self.viruses:
-            if x.reproduce(popDensity) > num2:
-                return SimpleVirus(x.maxBirthProb, x.clearProb)
-            else:
-                raise NoChildException
-        return SimplePatient(self.getTotalPop)
+                density = self.getTotalPop()/self.maxPop
+                try:
+                    self.viruses.append(x.reproduce(density))
+                except NoChildException:
+                    continue
+            return self.getTotalPop()
 
 
+s = SimplePatient(50, 100)
+print s.maxPop
+print s.viruses
+print s.getTotalPop()
+
+   # for x in self.viruses:
+        #     density = self.getTotalPop() / self.maxPop
+        #     if x.reproduce(density) > num2:
+        #         return SimpleVirus(x.maxBirthProb, x.clearProb)
+        #     else:
+        #         raise NoChildException
 #
 # PROBLEM 2
 #
@@ -161,19 +170,21 @@ def simulationWithoutDrug():
     Run the simulation and plot the graph for problem 2 (no drugs are used,
     viruses do not have any drug resistance).    
     Instantiates a patient, runs a simulation for 300 timesteps, and plots the
-    total virus population as a function of time.    
+    total virus population as a function of time.
     """
 
     # TODO
-    viruses = []
-    for x in range(0, 100):
-        virus = SimpleVirus(0.1, 0.05)
-        viruses.append(virus)
-    maxPop = 1000
-    patient = SimplePatient(viruses, maxPop)
-    for x in range(300):
-        return patient.update(x)
+    virus = []
+    list = []
+    virus2 = []
+    for j in range(0, 100):
+        virus2.append(SimpleVirus(0.1, 0.05))
+    patient = SimplePatient(virus2, 1000)
+    for i in range(0, 300):
+        virus.append(len(patient.viruses))
+        patient.update()
+        list.append(i)
+    print virus
+    print list
 
 simulationWithoutDrug()
-
-
