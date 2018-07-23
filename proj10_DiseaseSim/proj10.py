@@ -2,9 +2,9 @@
 # Name:
 # Date:
 
-import numpy
+# import numpy
 import random
-import pylab
+# import pylab
 
 ''' 
 Begin helper code
@@ -43,6 +43,9 @@ class SimpleVirus(object):
 
         # TODO
 
+        self.maxBirthProb = float(maxBirthProb)
+        self.clearProb = float(clearProb)
+
     def doesClear(self):
         """ Stochastically determines whether this virus particle is cleared from the
         patient's body at a time step. 
@@ -51,6 +54,11 @@ class SimpleVirus(object):
         """
 
         # TODO
+        rnum = random.randint(0, 100)
+        if self.clearProb > float(rnum)/float(100):
+            return True
+        else:
+            return False
 
     def reproduce(self, popDensity):
         """
@@ -73,7 +81,12 @@ class SimpleVirus(object):
         """
 
         # TODO
+        num = random.randint(0, 100)
 
+        if self.maxBirthProb * (1 - popDensity) > float(num)/float(100):
+            return SimpleVirus(self.maxBirthProb, self.clearProb)
+        else:
+            raise NoChildException
 
 class SimplePatient(object):
     """
@@ -94,6 +107,8 @@ class SimplePatient(object):
         """
 
         # TODO
+        self.viruses = viruses
+        self.maxPop = int(maxPop)
 
     def getTotalPop(self):
         """
@@ -102,8 +117,10 @@ class SimplePatient(object):
         """
 
         # TODO
+        return len(self.viruses)
 
-    def update(self):
+
+    def update(self, popDensity):
         """
         Update the state of the virus population in this patient for a single
         time step. update() should execute the following steps in this order:
@@ -120,6 +137,20 @@ class SimplePatient(object):
         """
 
         # TODO
+        num2 = random.randint(0, 100)
+        self.virusees = []
+        for x in self.viruses:
+            if x.doesClear() == False:
+                self.virusees.append(x)
+            else:
+                Try:
+                    x.reproduce(popDensity)
+        for x in self.viruses:
+            if x.reproduce(popDensity) > num2:
+                return SimpleVirus(x.maxBirthProb, x.clearProb)
+            else:
+                raise NoChildException
+        return SimplePatient(self.getTotalPop)
 
 
 #
@@ -134,3 +165,15 @@ def simulationWithoutDrug():
     """
 
     # TODO
+    viruses = []
+    for x in range(0, 100):
+        virus = SimpleVirus(0.1, 0.05)
+        viruses.append(virus)
+    maxPop = 1000
+    patient = SimplePatient(viruses, maxPop)
+    for x in range(300):
+        return patient.update(x)
+
+simulationWithoutDrug()
+
+
