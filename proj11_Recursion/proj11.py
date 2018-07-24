@@ -12,14 +12,29 @@
 # Post: the sum of lst[0]...lst[size-1] is returned
 # Challenge: This function could be done by dividing the list in half and performing recursive calls on each half (as opposed to just shrinking the size by one each time).
 
+def sumList(lst):
+    if len(lst) == 0:
+        sum = 0
+        return sum
+    elif len(lst) == 1:
+        sum = int(lst[0])
+        return sum
+    else:
+        return lst[0] + sumList(lst[1:])
 
 
 # member(target, set);
 # Task: determine if target is in the set
 # Pre: set is an list of 'size' integers, size is nonnegative
 # Post: true is returned if target is in the set, else false; the set is unchanged
-
-
+def member(target, set):
+    if len(set) == 0:
+        return False
+    if target == set[0]:
+        return True
+    else:
+        set = set[1:]
+        return member(target, set)
 
 # addStar(str);
 # Given a string, compute recursively a new string where all the adjacent characters are now separated by a "*".
@@ -29,6 +44,15 @@
 # addStar("hello") --> "h*e*l*l*o"
 # addStar("abc") --> "a*b*c"
 # addStar("ab") --> "a*b"
+
+
+def addStar(str):
+    for key in str:
+        if len(str) > 0:
+            key = key + "*"
+            addStar(str.append(key[0:-1]))
+        return str
+
 
 
 
@@ -47,8 +71,21 @@
 # The test is case insensitive (user .upper() & .lower()).
 # You do not need to worry about trimming blanks from the ends of the string.
 # Note: the empty string is a palindrome
-
-
+# def palindrome(user_input):
+#     #base case
+#     str(user_input.lower())
+#     if len(user_input.lower()) <= 1:
+#         print "This is a palindrome"
+#         return True
+#     #other case
+#     elif user_input.lower()[0] != user_input.lower()[-1]:
+#         print "This is not a palindrome"
+#         return False
+#     else:
+#         #recursive call to self
+#         palindrome(user_input.lower()[1:-1])
+#
+# palindrome(" ")
 
 # replace(target, replacement, numbers, size);
 # Task: replace all occurrences of 'target' in the list 'numbers'with 'replacement'
@@ -117,11 +154,11 @@
 # Post: the list elements in the segment a[lb..ub] have been set to value
 # Challenge: This function must be done by dividing the list segment in half and performing recursive calls on each half (as opposed to just shrinking the array bound by one each time)
 
-"""
-Extensions:
-Here are some more to try on your own! These do not come with tests...
-How would you write tests for these functions?
-"""
+# """
+# Extensions:
+# Here are some more to try on your own! These do not come with tests...
+# How would you write tests for these functions?
+# """
 
 # binomialCoeff (n, r);
 # Task: Compute the Binomial Coefficient using Pascal's Triangle.
