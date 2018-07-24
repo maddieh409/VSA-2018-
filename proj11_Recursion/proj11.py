@@ -47,13 +47,14 @@ def member(target, set):
 
 
 def addStar(str):
-    for key in str:
-        if len(str) > 0:
-            key = key + "*"
-            addStar(str.append(key[0:-1]))
+    if len(str) == 0:
         return str
-
-
+    if len(str) == 1:
+        return str
+    if len(str) == 2:
+        return str[0] + "*" + str[1]
+    else:
+        return str[0] + "*" + addStar(str[1:])
 
 
 # harmonicSum(n);
@@ -61,9 +62,9 @@ def addStar(str):
 # Pre: n is a positive integer
 # Post: the sum of the first n harmonic terms is returned.
 # The harmonic series is 1 + (1/2) + (1/3) + (1/4) + ...
+def harmonicSum(n):
 
-
-
+                     
 # isPalindrome(str);
 # Task: determine if a string is a palindrome
 # Pre: str is a string object
