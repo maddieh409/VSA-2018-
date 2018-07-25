@@ -63,8 +63,12 @@ def addStar(str):
 # Post: the sum of the first n harmonic terms is returned.
 # The harmonic series is 1 + (1/2) + (1/3) + (1/4) + ...
 def harmonicSum(n):
-
-                     
+    if n == 0:
+        return 0
+    if n == 1.0:
+        return 1.0
+    else:
+        return 1.0/float(n) + harmonicSum(n-1)
 # isPalindrome(str);
 # Task: determine if a string is a palindrome
 # Pre: str is a string object
@@ -72,21 +76,15 @@ def harmonicSum(n):
 # The test is case insensitive (user .upper() & .lower()).
 # You do not need to worry about trimming blanks from the ends of the string.
 # Note: the empty string is a palindrome
-# def palindrome(user_input):
-#     #base case
-#     str(user_input.lower())
-#     if len(user_input.lower()) <= 1:
-#         print "This is a palindrome"
-#         return True
-#     #other case
-#     elif user_input.lower()[0] != user_input.lower()[-1]:
-#         print "This is not a palindrome"
-#         return False
-#     else:
-#         #recursive call to self
-#         palindrome(user_input.lower()[1:-1])
-#
-# palindrome(" ")
+def isPalindrome(str):
+    str = str.replace(" ", "")
+    if len(str.lower()) <= 1:
+        return True
+    elif str.lower()[0] != str.lower()[-1]:
+        return False
+    else:
+        return isPalindrome(str.lower()[1:-1])
+
 
 # replace(target, replacement, numbers, size);
 # Task: replace all occurrences of 'target' in the list 'numbers'with 'replacement'
@@ -94,7 +92,14 @@ def harmonicSum(n):
 # Post: all occurrences of 'target' in 'numbers' have been replaced  with 'replacement';
 # the number of replacements performed is returned to the caller.
 
-
+def replace(target, replacement, numbers, size):
+    if size == 0:
+        return 0
+    if target == numbers[size - 1]:
+        numbers[size - 1] = replacement
+        return 1 + replace(target, replacement, numbers, size - 1)
+    else:
+        return replace(target, replacement, numbers, size - 1)
 
 # g_c_d(x, y);
 # Task: compute the Greatest Common Divisor (GCD) of two nonnegative integers using
@@ -107,6 +112,7 @@ def harmonicSum(n):
 # The last nonzero remainder is the greatest common divisor of a and b.
 # Pre: the parameters x & y are nonnegative
 # Post: the GCD of x & y is returned
+def g_c_d(x, y):
 
 
 
@@ -181,7 +187,7 @@ def harmonicSum(n):
 # count2(212) --> 2
 # count2(2212) --> 4
 
-
+                                                                                             
 
 # countSubs(str, sub);
 # Task: Given a string and a non-empty substring sub, compute recursively the number of times that sub appears in the string, without the sub  strings overlapping.
