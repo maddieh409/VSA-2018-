@@ -113,13 +113,19 @@ def replace(target, replacement, numbers, size):
 # Pre: the parameters x & y are nonnegative
 # Post: the GCD of x & y is returned
 def g_c_d(x, y):
-
+    if y == 0:
+        return x
+    r = x%y
+    return g_c_d(y, r)
 
 
 # void reverseLst(lst, first, last);
 # Task: reverse the contents of lst[first]...lst[last]
 # Pre: 'lst' is a list of at least 'last'+1 integers, first & last are nonnegative
 # Post: the elements lst[first]...lst[last]have been reversed.
+
+def reverseLst(lst, first, last):
+
 
 
 
